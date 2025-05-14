@@ -26,4 +26,18 @@ public class TaskController {
         List<Task> list = taskService.findAll();
         return ResponseEntity.ok().body(list);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task) {
+        task = taskService.update(id, task);
+        return ResponseEntity.ok().body(task);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Task> delete(@PathVariable Long id){
+        taskService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
